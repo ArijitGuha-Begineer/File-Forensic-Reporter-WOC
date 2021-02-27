@@ -12,14 +12,25 @@ def zsteg(loc):     #calling zsteg for PNG files
    zs=subprocess.run(['zsteg',loc],capture_output=True,text=True)
    print(zs.stdout)
 
-loc='Enter your location of file'
+def binwalk(loc):
+	bn=subprocess.run(['binwalk -e',loc],shell=True,capture_output=True,text=True)
+	print(bn.stdout)
+
+def stegseek(loc):
+	sk=subprocess.run(['stegseek',loc,'enter your wordlist.txt'],capture_output=True,text=True)
+    print(sk.stdout)
+
+loc=''
 def main(loc):
 	strings(loc)
 	exiftool(loc)
 	zsteg(loc)
+	binwalk(loc)
+	stegseek(loc)
 
 if __name__ == '__main__':
 	main(loc)
+
 
 
 
