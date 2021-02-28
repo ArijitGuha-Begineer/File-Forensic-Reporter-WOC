@@ -14,8 +14,13 @@ def fileidentification(loc):
    elif('JPEG' in ans):
 	   import image.py
 	   image.py.main(loc)
+
+   elif('text'in ans):
+   	   import txt.py
+   	   txt.py.main(loc)
 	
 
    else:
 	   print('file not recognisable')
+
 
