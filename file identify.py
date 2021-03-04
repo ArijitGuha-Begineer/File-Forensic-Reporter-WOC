@@ -19,6 +19,10 @@ def fileidentification(loc):
    	   import txt.py
    	   txt.py.main(loc)
 	
+   elif('pdf'in ans):
+	   import pdf.py
+           pdf.py.main(loc)
+	
 
    else:
 	   print('file not recognisable')
