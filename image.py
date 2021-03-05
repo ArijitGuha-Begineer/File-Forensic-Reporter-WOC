@@ -10,6 +10,7 @@ def strings(loc):   #calling strings command for PNG and JPG files
 
 def exiftool(loc):  #calling exiftool for PNG and JPG files
    st=subprocess.Popen(['exiftool',loc],stdout=subprocess.PIPE)
+   
    output=st.communicate()
    print(output)
    
@@ -36,6 +37,11 @@ def imagemagick(loc):
    output=st.communicate()
    print(output)
 
+def xxd(loc):
+   st=subprocess.Popen(['xxd','-a',loc],stdout=subprocess.PIPE)
+   output=st.communicate()
+   print(output)
+
 def main(loc):
 	strings(loc)
 	exiftool(loc)
@@ -43,6 +49,7 @@ def main(loc):
 	binwalk(loc)
 	stegseek(loc)
 	imagemagick(loc)
+	xxd(loc)
 	
 
 if __name__ == '__main__':
