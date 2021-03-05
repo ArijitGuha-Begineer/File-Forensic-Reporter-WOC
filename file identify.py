@@ -1,30 +1,38 @@
 import subprocess
 import re
 
-
+loc='/home/arijit/Downloads/flag1.wav'
 def fileidentification(loc):
    command=subprocess.run(['file',loc],capture_output=True,text=True)
    ans=re.findall(r'\w+',command.stdout)
    
    if('PNG' in ans):
-	   import image.py
-	   image.py.main(loc)
+	   import image
+	   image.main(loc)
 
 
    elif('JPEG' in ans):
-	   import image.py
-	   image.py.main(loc)
+	   import image
+	   image.main(loc)
 
-   elif('text'in ans):
-   	   import txt.py
-   	   txt.py.main(loc)
-	
-   elif('pdf'in ans):
-	   import pdf.py
-           pdf.py.main(loc)
+
+   elif('ASCII text'in ans):
+   	   import txt
+   	   txt.main(loc)
+
+   elif('PDF'in ans):
+   	   import pdf
+   	   pdf.main(loc)
+
+   elif('WAVE'in ans):
+   	   import wav
+   	   wav.main(loc)
 	
 
    else:
 	   print('file not recognisable')
+
+
+fileidentification(loc)
 
 
