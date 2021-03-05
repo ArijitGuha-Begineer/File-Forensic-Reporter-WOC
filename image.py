@@ -10,7 +10,6 @@ def strings(loc):   #calling strings command for PNG and JPG files
 
 def exiftool(loc):  #calling exiftool for PNG and JPG files
    st=subprocess.Popen(['exiftool',loc],stdout=subprocess.PIPE)
-   
    output=st.communicate()
    print(output)
    
