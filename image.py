@@ -9,10 +9,12 @@ def strings(loc):   #calling strings command for PNG and JPG files
    print(output)
 
 def exiftool(loc):  #calling exiftool for PNG and JPG files
-   st=subprocess.Popen(['exiftool',loc],stdout=subprocess.PIPE)
-   
-   output=st.communicate()
-   print(output)
+    st=subprocess.run(['exiftool',loc],capture_output=True,text=True)
+    output=re.findall(r'[0-9]{4}\:[0-9]{2}\:[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}',st.stdout)
+    modificationdate=output[0]
+    print('Modification date and time of the file: '+modificationdate)
+    accessdate=output[1]
+    print('Access date and time of the file: '+accessdate)
    
 
 def zsteg(loc):     #calling zsteg for PNG files
@@ -54,7 +56,6 @@ def main(loc):
 
 if __name__ == '__main__':
 	main(loc)
-
 
 
 
