@@ -1,7 +1,7 @@
 import subprocess
 import re
 
-loc='/home/arijit/Downloads/flag1.wav'
+loc='/home/arijit/Downloads/task.zip'
 def fileidentification(loc):
    command=subprocess.run(['file',loc],capture_output=True,text=True)
    ans=re.findall(r'\w+',command.stdout)
@@ -27,6 +27,10 @@ def fileidentification(loc):
    elif('WAVE'in ans):
    	   import wav
    	   wav.main(loc)
+
+   elif('Zip'in ans):
+         import zip
+
 	
 
    else:
