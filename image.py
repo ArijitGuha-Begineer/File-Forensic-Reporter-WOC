@@ -19,30 +19,34 @@ def exiftool(loc):  #calling exiftool for PNG and JPG files
 
 def zsteg(loc):     #calling zsteg for PNG files
    st=subprocess.Popen(['zsteg',loc],stdout=subprocess.PIPE)
-   output=st.communicate()
+   output=st.communicate()[0]
    print(output)
 
 def binwalk(loc):   #reveals metadata stored in the image
    st=subprocess.Popen(['binwalk',loc],stdout=subprocess.PIPE)
-   output=st.communicate()
+   output=st.communicate()[0]
    print(output)
 
 
 def stegseek(loc):
    st=subprocess.Popen(['stegseek',loc,'/home/arijit/Downloads/rockyou.txt'],stdout=subprocess.PIPE)
-   output=st.communicate()
+   output=st.communicate()[0]
    print(output)
 
 
 def imagemagick(loc):
    st=subprocess.Popen(['identify','-verbose',loc],stdout=subprocess.PIPE)
-   output=st.communicate()
+   output=st.communicate()[0]
    print(output)
 
 def xxd(loc):
    st=subprocess.Popen(['xxd','-a',loc],stdout=subprocess.PIPE)
-   output=st.communicate()
+   output=st.communicate()[0]
    print(output)
+
+def foremost(loc):
+   data=subprocess.run(['foremost','-T','-v',loc],capture_output=True,text=True)
+   print(data.stdout)
 
 def main(loc):
 	strings(loc)
@@ -52,6 +56,7 @@ def main(loc):
 	stegseek(loc)
 	imagemagick(loc)
 	xxd(loc)
+        foremost(loc)
 	
 
 if __name__ == '__main__':
