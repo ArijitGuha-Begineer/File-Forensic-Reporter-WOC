@@ -5,48 +5,82 @@ loc='/home/arijit/Downloads/rocks.jpg'
 
 def strings(loc):   #calling strings command for PNG and JPG files
    st=subprocess.Popen(['strings',loc],stdout=subprocess.PIPE)
-   output=st.communicate()
-   print(output)
+   output=st.communicate()[0]
+   with open("Report.md","a")as f:
+      f.write("*****output*****")
+      f.close()
+   with open("Report.md","a+b")as f:
+      f.write(output)
+      f.close() 
 
 def exiftool(loc):  #calling exiftool for PNG and JPG files
-    st=subprocess.run(['exiftool',loc],capture_output=True,text=True)
-    output=re.findall(r'[0-9]{4}\:[0-9]{2}\:[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}',st.stdout)
-    modificationdate=output[0]
-    print('Modification date and time of the file: '+modificationdate)
-    accessdate=output[1]
-    print('Access date and time of the file: '+accessdate)
-   
+    st=subprocess.Popen(['exiftool',loc],stdout=subprocess.PIPE)
+    output=st.communicate()[0]
+    with open("Report.md","a")as f:
+       f.write("*****output******")
+       f.close()
+    with open("Report.md","a+b")as f:
+       f.write(output)
+       f.close()
+
 
 def zsteg(loc):     #calling zsteg for PNG files
    st=subprocess.Popen(['zsteg',loc],stdout=subprocess.PIPE)
    output=st.communicate()[0]
-   print(output)
+   
+   with open("Report2.md","a")as f:
+      f.write("******output*******")
+      f.close()
+   with open("Report2.md","a+b")as f:
+      f.write(output)
+      f.close()
 
 def binwalk(loc):   #reveals metadata stored in the image
    st=subprocess.Popen(['binwalk',loc],stdout=subprocess.PIPE)
    output=st.communicate()[0]
-   print(output)
+   
+   with open("Report2.md","a")as f:
+      f.write("output")
+      f.close()
+   with open("Report2.md","a+b")as f:
+      f.write(output)
+      f.close()
 
 
 def stegseek(loc):
    st=subprocess.Popen(['stegseek',loc,'/home/arijit/Downloads/rockyou.txt'],stdout=subprocess.PIPE)
    output=st.communicate()[0]
-   print(output)
+   
+   with open("Report2.md","a")as f:
+      f.write("output")
+      f.close()
+   with open("Report2.md","a+b")as f:
+      f.write(output)
+      f.close()
 
 
 def imagemagick(loc):
    st=subprocess.Popen(['identify','-verbose',loc],stdout=subprocess.PIPE)
    output=st.communicate()[0]
-   print(output)
+   
+   with open("Report2.md","a")as f:
+      f.write("output")
+      f.close()
+   with open("Report2.md","a+b")as f:
+      f.write(output)
+      f.close()
 
 def xxd(loc):
    st=subprocess.Popen(['xxd','-a',loc],stdout=subprocess.PIPE)
    output=st.communicate()[0]
-   print(output)
+  
+   with open("Report2.md","a")as f:
+      f.write("output")
+      f.close()
+   with open("Report2.md","a+b")as f:
+      f.write(output)
+      f.close()
 
-def foremost(loc):
-   data=subprocess.run(['foremost','-T','-v',loc],capture_output=True,text=True)
-   print(data.stdout)
 
 def main(loc):
 	strings(loc)
@@ -56,11 +90,12 @@ def main(loc):
 	stegseek(loc)
 	imagemagick(loc)
 	xxd(loc)
-        foremost(loc)
+   
 	
 
 if __name__ == '__main__':
 	main(loc)
+
 
 
 
