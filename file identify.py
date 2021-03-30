@@ -1,7 +1,7 @@
 import subprocess
 import re
 
-loc='/home/arijit/Downloads/task.zip'
+loc='/home/arijit/Downloads/weird.docm'
 def fileidentification(loc):
    command=subprocess.run(['file',loc],capture_output=True,text=True)
    ans=re.findall(r'\w+',command.stdout)
@@ -29,9 +29,11 @@ def fileidentification(loc):
    	   wav.main(loc)
 
    elif('Zip'in ans):
-         import zip
+        import zip
 
-	
+   elif('Microsoft'in ans):
+	    import officefiles
+	    officefiles.main(loc)
 
    else:
 	   print('file not recognisable')
