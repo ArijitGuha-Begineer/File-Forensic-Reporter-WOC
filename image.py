@@ -81,6 +81,25 @@ def xxd(loc):
       f.write(output)
       f.close()
 
+def outguess(loc):
+   st=subprocess.Popen(['outguess','-r',loc,'output.txt'],stdout=subprocess.PIPE)
+   output=st.communicate()[0]
+
+   with open("Report.md","a")as f:
+      f.write("output")
+      f.close
+   try:
+      with open("output.txt","r")as l:
+         text=l.read()
+         l.close()
+      with open("Report.md","a")as f:
+         f.write(text)
+         f.close()
+   except:
+      with open("Report.md","a")as f:
+         f.write("No Output")
+         f.close()
+
 
 def main(loc):
 	strings(loc)
@@ -95,7 +114,6 @@ def main(loc):
 
 if __name__ == '__main__':
 	main(loc)
-
 
 
 
