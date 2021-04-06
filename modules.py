@@ -129,7 +129,7 @@ def foremost(loc):
       f.close()
 
 def wavsteg(loc):
-  st=subprocess.Popen(['stegolsb','wavesteg','-r','-i',loc,'-o','output.txt','-b','10000'],stdout=subprocess.PIPE)
+  st=subprocess.Popen(['stegolsb','wavsteg','-r','-i',loc,'-o','output.txt','-b','10000'],stdout=subprocess.PIPE)
   output=st.communicate()[0]
   with open('output.txt','rb')as f1:
 	  text=f1.read()
