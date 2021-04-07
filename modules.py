@@ -1,11 +1,11 @@
 import subprocess
 import re
-
+from PIL import Image
 def cat(loc):
   st=subprocess.Popen(['cat',loc],stdout=subprocess.PIPE)
   output=st.communicate()[0]
   with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n******output*******\n\n")
+      f.write("\n\n******output from cat *******\n\n")
       f.close()
   with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -35,7 +35,7 @@ def exiftool(loc):  #calling exiftool for PNG and JPG files
     output=st.communicate()[0]
     
     with open("/home/arijit/Downloads/Report.md","a")as f:
-       f.write("\n\n*****output******\n\n")
+       f.write("\n\n*****output from exiftool******\n\n")
        f.close()
     with open("/home/arijit/Downloads/Report.md","a+b")as f:
        f.write(output)
@@ -47,7 +47,7 @@ def zsteg(loc):     #calling zsteg for PNG files
    output=st.communicate()[0]
    
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n******output*******\n\n")
+      f.write("\n\n******output from zsteg*******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -58,7 +58,7 @@ def binwalk(loc):   #reveals metadata stored in the image
    output=st.communicate()[0]
    
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*******output*******\n\n")
+      f.write("\n\n*******output from binwalk*******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -70,7 +70,7 @@ def stegseek(loc):
    output=st.communicate()[0]
    
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*******output******\n\n")
+      f.write("\n\n*******output from zsteg******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -82,7 +82,7 @@ def imagemagick(loc):
    output=st.communicate()[0]
    
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n********output*******\n\n")
+      f.write("\n\n********output from imagemagick*******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -93,7 +93,7 @@ def xxd(loc):
    output=st.communicate()[0]
   
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*********output*******\n\n")
+      f.write("\n\n*********output from xxd *******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -104,7 +104,7 @@ def outguess(loc):
    output=st.communicate()[0]
 
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*******output*******\n\n")
+      f.write("\n\n*******output from outguess*******\n\n")
       f.close
    try:
       with open("/home/arijit/Downloads/output.txt","r")as l:
@@ -122,31 +122,31 @@ def foremost(loc):
    st=subprocess.Popen(['foremost','-T',loc,'-v'],stdout=subprocess.PIPE)
    output=st.communicate()[0]
    with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*********output*******\n\n")
+      f.write("\n\n*********output from foremost *******\n\n")
       f.close()
    with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
       f.close()
 
 def wavsteg(loc):
-  st=subprocess.Popen(['stegolsb','wavsteg','-r','-i',loc,'-o','output.txt','-b','10000'],stdout=subprocess.PIPE)
+  st=subprocess.Popen(['stegolsb','wavsteg','-r','-i',loc,'-o','output.txt','-b','1000'],stdout=subprocess.PIPE)
   output=st.communicate()[0]
-  with open('output.txt','rb')as f1:
+  with open('output.txt','r')as f1:
 	  text=f1.read()
 	  f1.close()
   with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*********output*******\n\n")
+      f.write("\n\n*********output from wavesteg*******\n\n")
       f.close()
   with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
-      f.close()
+      
 
 
 def pdfid(loc):  #finding any hidden hash within the pdf file
   text=subprocess.Popen([f'pdfid {loc} | grep -v -E "xref|trailer|/AA|/OpenAction|/Acroform|/XFA|/RichMedia|startxref" '],shell=True,stdout=subprocess.PIPE)
   output=text.communicate()[0]
   with open("/home/arijit/Downloads/Report.md","a")as f:
-      f.write("\n\n*********output*******\n\n")
+      f.write("\n\n*********output from pdfid******\n\n")
       f.close()
   with open("/home/arijit/Downloads/Report.md","a+b")as f:
       f.write(output)
@@ -156,7 +156,7 @@ def olevba(loc):
     st=subprocess.Popen(['olevba','-c',loc],stdout=subprocess.PIPE)
     output=st.communicate()[0]
     with open("/home/arijit/Downloads/Report.md","a")as f:
-        f.write("output")
+        f.write("\n\n********output from olevba******\n\n")
         f.close()
     with open("/home/arijit/Downloads/Report.md","a+b")as f:
         f.write(output)
@@ -179,7 +179,7 @@ def pyxswf(loc):
     st=subprocess.Popen(['pyxswf','-x',loc],stdout=subprocess.PIPE)
     output=st.communicate()[0]
     with open("/home/arijit/Downloads/Report.md","a")as f:
-        f.write("\n\n******output*******\n\n")
+        f.write("\n\n******output from pyxswf*******\n\n")
         f.close()
     with open("/home/arijit/Downloads/Report.md","a+b")as f:
         f.write(output)
@@ -189,8 +189,31 @@ def msodde(loc):
     st=subprocess.Popen(['msodde','-a',loc],stdout=subprocess.PIPE)
     output=st.communicate()[0]
     with open("/home/arijit/Downloads/Report.md","a")as f:
-        f.write("\n\n******output*******\n\n")
+        f.write("\n\n******output from msodde*******\n\n")
         f.close()
     with open("/home/arijit/Downloads/Report.md","a+b")as f:
         f.write(output)
         f.close()
+
+def stegsnow(loc):
+   st=subprocess.Popen(['stegsnow',loc,'/home/arijit/Downloads/snowoutput.txt'],stdout=subprocess.PIPE)
+   output=st.communicate()[0]
+   with open("/home/arijit/Downloads/Report.md","a")as f:
+      f.write("\n\n*******output from stegsnow*******\n\n")
+      f.close
+   try:
+      with open("/home/arijit/Downloads/snowoutput.txt","r")as l:
+         text=l.read()
+      with open("/home/arijit/Downloads/Report.md","a")as f:
+         f.write(text)
+         f.close()
+   except:
+      with open("/home/arijit/Downloads/Report.md","a")as f:
+         f.write("No Output")
+         f.close()
+
+def spectrogram(loc):
+   st=subprocess.Popen(['sox',loc,'-n','spectrogram'],stdout=subprocess.PIPE)
+   output=st.communicate()[0]
+   im=Image.open("/home/arijit/spectrogram.png")
+   image=im.show()
