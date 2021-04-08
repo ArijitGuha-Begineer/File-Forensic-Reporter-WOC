@@ -1,24 +1,28 @@
 import subprocess
 import re
 
-loc='/home/arijit/Downloads/weird.docm'
+loc='/home/arijit/Downloads/test.bmp'
 def fileidentification(loc):
    command=subprocess.run(['file',loc],capture_output=True,text=True)
    ans=re.findall(r'\w+',command.stdout)
    
    if('PNG' in ans):
-	   import image
-	   image.main(loc)
+	   import png
+	   png.main(loc)
 
 
    elif('JPEG' in ans):
-	   import image
-	   image.main(loc)
+	   import jpg
+	   jpg.main(loc)
+
+   elif('bitmap' in ans):
+	   import bmp
+	   bmp.main(loc)   
 
 
-   elif('ASCII text'in ans):
-   	   import txt
-   	   txt.main(loc)
+   elif('ASCII'in ans):
+   	   import text
+   	   text.main(loc)
 
    elif('PDF'in ans):
    	   import pdf
