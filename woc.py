@@ -1,7 +1,11 @@
 import subprocess
 import re
+import os
+import sys
 
-loc='/home/arijit/Downloads/test.bmp'
+data=sys.argv[1]
+loc=os.path.abspath(data)
+
 def fileidentification(loc):
    command=subprocess.run(['file',loc],capture_output=True,text=True)
    ans=re.findall(r'\w+',command.stdout)
