@@ -3,7 +3,6 @@ import modules
 
 
 def main(loc):
-   modules.cat(loc)
    modules.strings(loc)
    modules.exiftool(loc)
    modules.binwalk(loc)
@@ -13,4 +12,5 @@ def main(loc):
    modules.stegseek(loc)
    modules.imagemagick(loc)
    modules.stegsnow(loc)
+
 
