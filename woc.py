@@ -37,7 +37,9 @@ def fileidentification(loc):
    	   wav.main(loc)
 
    elif('Zip'in ans):
-        import zip
+	   import Zip
+	   Zip.main(loc)
+       
 
    elif('Microsoft'in ans):
 	    import officefiles
@@ -48,5 +50,4 @@ def fileidentification(loc):
 
 
 fileidentification(loc)
-
 
