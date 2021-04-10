@@ -1,6 +1,7 @@
 import subprocess
 import re
 from PIL import Image
+import zipfile
 def cat(loc):
   st=subprocess.Popen(['cat',loc],stdout=subprocess.PIPE)
   output=st.communicate()[0]
@@ -219,3 +220,15 @@ def spectrogram(loc):
    output=st.communicate()[0]
    im=Image.open("spectrogram.png")
    image=im.show()
+
+def zipfile(loc):
+   try:
+	    with zipfile.ZipFile(loc,'r') as my_zip:
+	    	my_zip.extractall(loc)
+
+   except:
+	   data=subprocess.Popen(['fcrackzip','-u','-D','-p','/home/arijit/Downloads/rockyou.txt',loc],stdout=subprocess.PIPE)
+	   output=data.communicate()[0]
+	   with open("Report.md","a+b") as f:
+		   f.write(output)
+		   f.close()
